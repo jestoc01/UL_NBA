@@ -14,8 +14,7 @@ while True:
 # Here is a dictionary of former University of Louisville players CURRENTLY in the NBA matched with their team and updated from file ul_nba_current.json.
 	with open('ul_nba_current.json') as f:
 		current_ul_nba_dict = json.load(f)
-	current_ul_nba_dict = 
-# Here is a list to keep track of the key:value order after any updates to the dictionary 	
+	# Here is a list to keep track of the key:value order after any updates to the dictionary 	
 	current_ul_nba_list = []
 	index = 1
 	for v,k in current_ul_nba_dict.items():
