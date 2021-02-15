@@ -1,6 +1,9 @@
 """ Provide information about previous University of Louisville basketball players now playing in the NBA"""
 
 import json
+import pandas as pd
+
+
 
 def load_current_players_dict(filename):
 		""" opens file with error checking and loads contents into dictionary
@@ -29,6 +32,18 @@ def print_current_players():
 			print(index,':',v)
 			index += 1
 
+	
+def order_alltime_players_dataframe(filename):
+	""" sort all UL players ever to play in NBA by field goal percentage
+	"""
+	ul_nba_players=pd.read_csv(filename)
+	current_ul_nba_fgp_list = []
+	FGP=ul_nba_players.sort_values(by=['FG%'], ascending=[False])
+	FGP2=FGP.reset_index(drop=True)
+	for i in current_ul_nba_list:
+		field_goal_rank = FGP2[FGP2['Player']==i].index[0]
+		current_ul_nba_fgp_list.append(field_goal_rank + 1)
+	return current_ul_nba_fgp_list
 
 
 # opens file with error checking and its contents are loaded into a dictionary of former University of Louisville players CURRENTLY in the NBA matched with their team and updated from file ul_nba_current.json.
@@ -36,6 +51,13 @@ current_ul_nba_dict = load_current_players_dict('ul_nba_current.json')
 
 # Here is a dictionary printout utilizing a key-tracking list  	
 current_ul_nba_list = load_current_players_list()
+
+# Here are all the UofL players who ever played in the NBA ordered by field goal percentage
+current_ul_nba_fgp_list=order_alltime_players_dataframe('ul_nba_players.csv')
+
+
+
+
 
 print('\n---------------------------------------------------------------------------------------------------------------')
 print("\nWelcome to 'Where R They Now'")
@@ -53,6 +75,9 @@ while True:
 			break
 		elif int(player_choice) > 0 and (int(player_choice) <= len(current_ul_nba_list)):
 			print("\n\n", current_ul_nba_list[int(player_choice)-1], "plays for the", current_ul_nba_dict.get(current_ul_nba_list[int(player_choice) -1], "\n\n"))
+			list_item = int(player_choice)-1
+			print("\n He ranks #", current_ul_nba_fgp_list[list_item], " in field goal percentage among all UofL players who ever played in the NBA.")
+			
 		elif int(player_choice) <= 0:
 			print("\n\nUofL's not that bad!")
 		elif int(player_choice) > len(current_ul_nba_list):
