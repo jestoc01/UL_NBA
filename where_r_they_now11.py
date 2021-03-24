@@ -71,7 +71,9 @@ while True:
 	try:
 		player_choice = input('\n\nPlease choose #1-6 to find out more about former UofL players currently in the NBA  or press "q" to quit:  ')
 		if player_choice.lower() == 'q':
-			print('\nHave a nice day!')
+			print('\n\nHave a nice day!')
+			print('\n\nPlease see Where_R_They_Now__Jupyter_Notebook_Version2.ipynb')
+			print('\nThis notebook displays additional information that is best viewed graphically.')
 			break
 		elif int(player_choice) > 0 and (int(player_choice) <= len(current_ul_nba_list)):
 			print("\n\n", current_ul_nba_list[int(player_choice)-1], "plays for the", current_ul_nba_dict.get(current_ul_nba_list[int(player_choice) -1], "\n\n"))
